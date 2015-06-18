@@ -32,11 +32,19 @@ function printTime(stringTime) {
 	document.getElementById("clock").innerHTML = stringTime;
 }
 
+function printEnd() {
+	document.getElementById("clock").innerHTML = "BEER TIME!!!!";
+}
+
 function createTime () {
-	var differenceMiliseconds = setDifference(23);
-	var parsedDifference = parseMiliseconds(differenceMiliseconds);
-	var stringTime = convertTime(parsedDifference);
-	printTime(stringTime)	
+	var differenceMiliseconds = setDifference(20);
+	if (differenceMiliseconds < 0) {
+		printEnd();
+	} else {
+		var parsedDifference = parseMiliseconds(differenceMiliseconds);
+		var stringTime = convertTime(parsedDifference);
+		printTime(stringTime)			
+	}
 }
 
 window.setInterval(createTime, 1000);
