@@ -37,13 +37,13 @@ function printEnd() {
 }
 
 function createTime () {
-	var differenceMiliseconds = setDifference(20);
+	var differenceMiliseconds = setDifference(18);
 	if (differenceMiliseconds < 0) {
 		printEnd();
 	} else {
 		var parsedDifference = parseMiliseconds(differenceMiliseconds);
 		var stringTime = convertTime(parsedDifference);
-		printTime(stringTime)			
+		printTime(stringTime)		
 	}
 }
 
