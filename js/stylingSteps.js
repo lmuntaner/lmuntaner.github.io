@@ -32,10 +32,10 @@
 
   function biggerTitle() {
     var h1Element = document.getElementsByTagName('h1')[0];
-    h1Element.style.fontSize = '150px';
+    h1Element.style.fontSize = '9em';
     var h2Elements = document.getElementsByTagName('h2');
-    h2Elements[0].style.fontSize = '50px';
-    h2Elements[1].style.fontSize = '50px';
+    h2Elements[0].style.fontSize = '3em';
+    h2Elements[1].style.fontSize = '3em';
     getIdSetClass('title');
     getIdSetClass('title-hi');
     getIdSetClass('title-name');

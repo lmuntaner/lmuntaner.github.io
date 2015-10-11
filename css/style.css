@@ -21,8 +21,19 @@ div, h1, h2, p, a {
   text-decoration: none;
 }
 
+@media (min-width: 600px) {
+  .container {
+    width: 600px;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    width: 100%;
+  }
+}
+
 .container {
-  width: 45%;
   margin-left: auto;
   margin-right: auto;
 }
