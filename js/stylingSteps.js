@@ -3,6 +3,7 @@
 (function () {
   'use strict';
   var waitingTime = 1000;
+  var initialWait = 1000;
 
   function ready(fn) {
     if (document.readyState !== 'loading'){
@@ -13,7 +14,7 @@
   }
 
   function getReady() {
-    setTimeout(startStyling, waitingTime)
+    setTimeout(startStyling, initialWait)
   }
 
   function startStyling() {
@@ -54,6 +55,7 @@
 
   function boringInfo() {
     getIdSetClass('boring-info');
+    getIdSetClass('important-info');
   }
 
   function coolLinks() {
