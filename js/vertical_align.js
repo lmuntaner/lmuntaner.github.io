@@ -12,7 +12,6 @@
   }
 
   function verticalAlign() {
-    debugger;
   }
 
   ready(verticalAlign);
