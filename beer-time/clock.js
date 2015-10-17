@@ -1,7 +1,7 @@
-function setDifference(hour) {
+function setDifference(hour, minutes) {
 	var targetTime = new Date();
 	targetTime.setHours(hour);
-	targetTime.setMinutes(0);
+	targetTime.setMinutes(minutes);
 	targetTime.setSeconds(0);
 
 	var currentTime = new Date();
@@ -37,17 +37,14 @@ function printEnd() {
 }
 
 function createTime () {
-	var differenceMiliseconds = setDifference(18);
+	var differenceMiliseconds = setDifference(17, 30);
 	if (differenceMiliseconds < 0) {
 		printEnd();
 	} else {
 		var parsedDifference = parseMiliseconds(differenceMiliseconds);
 		var stringTime = convertTime(parsedDifference);
-		printTime(stringTime)		
+		printTime(stringTime)
 	}
 }
 
 window.setInterval(createTime, 1000);
-
-
-
