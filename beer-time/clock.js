@@ -36,8 +36,10 @@ function printEnd() {
 	document.getElementById("clock").innerHTML = "BEER TIME!!!!";
 }
 
+var userHour, userMinutes;
+
 function createTime () {
-	var differenceMiliseconds = setDifference(17, 30);
+	var differenceMiliseconds = setDifference(userHour, userMinutes);
 	if (differenceMiliseconds < 0) {
 		printEnd();
 	} else {
@@ -47,4 +49,11 @@ function createTime () {
 	}
 }
 
+function getTime () {
+	var userTime = prompt('What time is Beer Time??!! [hour, minutes]').split(' ');
+	userHour = userTime[0];
+	userMinutes = userTime[1];
+}
+
+getTime();
 window.setInterval(createTime, 1000);
