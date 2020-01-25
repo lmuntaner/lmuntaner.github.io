@@ -1,0 +1,292 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title>
+		Sudoku Solver
+	</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+
+
+	<meta name="description" content="Sudoku Solver" />
+	<meta name="keywords" content="sudoku, sudoku solver, solucionar sudoku, solucionador sudoku, sudokus" />
+	<meta name="author" content="Llorenc" />
+	<meta http-equiv="content-type" content="text/html;charset=iso-8859-1" />
+	<link rel="stylesheet" href="css/normalize.css" type="text/css" media="screen">
+	<link rel="stylesheet" href="css/grid.css" type="text/css" media="screen">
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+  <link rel="stylesheet" href="css/cover.css" type="text/css" media="screen">
+  <link rel="stylesheet" href="css/sudoku.css" type="text/css" media="screen">
+  <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="js/script.js"></script>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<div class="site-wrapper">
+
+  <div class="site-wrapper-inner">
+
+    <div class="cover-container">
+
+      <div class="masthead clearfix sudoku-menu">
+        <div class="inner">
+          <h3 class="masthead-brand">Sudoku Solver</h3>
+          <nav>
+            <ul class="nav masthead-nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li>
+                <a href="https://www.linkedin.com/in/llorencmuntaner"
+                   target="_blank">
+                   Contact
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+      <div class="sudoku-title">
+        <h1>Solve a sudoku step by step</h1>
+      </div>
+
+      <div class="sudoku-container">
+      	<div class="sudoku-table">
+					<script type="text/javascript">
+						var $table = $("<table>");
+						for (var i = 0; i < 9; i++) {
+							$row = $("<tr>");
+							for (var j = 0; j < 9; j++) {
+								$td = $("<td>");
+								$input = $("<input>");
+								if (j == 3 || j == 6) {
+									$td.addClass("solve_left");
+								}
+								if (i == 3 || i == 6) {
+									$td.addClass("solve_top");
+								}
+								$input.attr("type", "text").attr("name", "number").attr("id", i + "-" + j);
+								$td.append($input);
+								$row.append($td);
+							}
+							$table.append($row);
+						}
+						$('div.sudoku-table').append($table);
+					</script>
+
+          <div class="test-button">
+            <input id="test-sudoku"
+									 class="btn btn-primary"
+									 type="button"
+									 name="Test"
+									 value="Fill"
+									 data-toggle="tooltip" data-placement="bottom" title="Fill with an example">
+					</div>
+					<div class="reset-button">
+            <input id="reset-sudoku"
+									 class="btn btn-primary"
+									 type="button"
+									 name="Test"
+									 value="Reset"
+									 data-toggle="tooltip" data-placement="bottom" title="Reset Sudoku">
+          </div>
+        </div>
+
+        <div class="sudoku-buttons">
+          <div class="number-buttons">
+            <h3>Check by number</h3>
+            <table>
+              <tr>
+                <td>
+									<input id="1-button" class="btn btn-warning" type="button" value="1"
+												 data-toggle="tooltip" data-placement="top" title="1's next step">
+								</td>
+                <td>
+									<input id="2-button" class="btn btn-warning" type="button" value="2"
+												 data-toggle="tooltip" data-placement="top"
+												 title="2's next step">
+								</td>
+                <td>
+									<input id="3-button" class="btn btn-warning" type="button" value="3"
+												 data-toggle="tooltip" data-placement="top"
+												 title="3's next step">
+								</td>
+              </tr>
+              <tr>
+                <td>
+									<input id="4-button" class="btn btn-warning" type="button" value="4"
+												 data-toggle="tooltip" data-placement="top"
+												 title="4's next step">
+								</td>
+                <td>
+									<input id="5-button" class="btn btn-warning" type="button" value="5"
+												 data-toggle="tooltip" data-placement="top"
+												 title="5's next step">
+								</td>
+                <td>
+									<input id="6-button" class="btn btn-warning" type="button" value="6"
+												 data-toggle="tooltip" data-placement="top"
+												 title="6's next step">
+								</td>
+              </tr>
+              <tr>
+                <td>
+									<input id="7-button" class="btn btn-warning" type="button" value="7"
+												 data-toggle="tooltip" data-placement="top"
+												 title="7's next step">
+								</td>
+                <td>
+									<input id="8-button" class="btn btn-warning" type="button" value="8"
+												 data-toggle="tooltip" data-placement="top"
+												 title="8's next step">
+								</td>
+                <td>
+									<input id="9-button" class="btn btn-warning" type="button" value="9"
+												 data-toggle="tooltip" data-placement="top"
+												 title="9's next step">
+								</td>
+              </tr>
+            </table>
+          </div>
+          <div class="general-buttons">
+            <h3>Check by step</h3>
+            <table>
+              <tr>
+                <td>
+									<input id="h-button" class="faker btn btn-warning" type="button"
+												 name="Fake H" value="H"
+												 data-toggle="tooltip" data-placement="top"
+												 title="Check all the horizontal's possible numbers in this step">
+								</td>
+                <td>
+									<input id="v-button" class="faker btn btn-warning" type="button"
+												 name="Fake V" value="V"
+												 data-toggle="tooltip" data-placement="top"
+												 title="Check all the vertical's possible numbers in this step">
+								</td>
+              </tr>
+              <tr>
+                <td>
+									<input id="d-button" class="faker btn btn-warning" type="button"
+												 name="Fake D" value="D"
+												 data-toggle="tooltip" data-placement="top"
+												 title="Check all the square's possible numbers in this step">
+									</td>
+                <td>
+									<input id="q-button" class="faker btn btn-warning" type="button"
+												 name="Fake Q" value="Q"
+												 data-toggle="tooltip" data-placement="top"
+												 title="Check each cell possible numbers in this step">
+								</td>
+              </tr>
+            </table>
+          </div>
+          <div class="container-solve-button">
+            <h3>Solve sudoku</h3>
+            <input id="solve" class="btn btn-danger solve-button" type="button"
+									 name="Solve" value="Solve"
+									 data-toggle="tooltip" data-placement="bottom"
+									 title="Solve the Sudoku!">
+          </div>
+        </div>
+      </div>
+
+			<div>
+				<a href="javascript:void(0))" class="show-hidden" data-toggle="tooltip" data-placement="top"
+					 title="Take a look at the matrix for each number">Show Matrix Layers</a>
+			</div>
+
+      <div class="mastfoot">
+        <div class="inner">
+          <p>by: Llorenc Muntaner</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="container">
+<!--- Display all the matrixs of the cube -->
+		<div class="sudoku_solving">
+			<h2>Super Matrix</h2>
+			<script type="text/javascript">
+				for (var row = 0; row < 3; row++) {
+					$div = $("<div>").addClass("row");
+					for (var matrix = row * 3; matrix < (row * 3) + 3; matrix++) {
+						$matrixDiv = $('<div>').addClass("col-xs-4");
+						$title = $('<h3>').text("Matrix for number " + (matrix + 1));
+						$matrixDiv.append($title);
+						$table = $('<table>');
+						for (var i = 0; i < 9; i++) {
+							$row = $("<tr>");
+							for (var j = 0; j < 9; j++) {
+								$td = $("<td>");
+								$input = $("<input>");
+								if (j == 3 || j == 6) {
+									$td.addClass("solve_left");
+								}
+								if (i == 3 || i == 6) {
+									$td.addClass("solve_top");
+								}
+								$input.attr("type", "text").attr("name", "test_number").attr("id", "k" + matrix + "-i" + i + "-j" + j);
+								$td.append($input);
+								$row.append($td);
+							}
+							$td = $('<td>');
+							$sumInput = $('<input>').attr("name", "test_sum_h").addClass("sum").attr("id", "sum-k" + matrix + "-i" + i);
+							$td.append($sumInput);
+							$row.append($td)
+							$table.append($row);
+						}
+						$row = $("<tr>");
+						for (var l = 0; l < 9; l++) {
+							$td = $('<td>');
+							$input = $("<input>");
+							$input.attr("type", "text")
+										.attr("name", "test_sum_v")
+										.addClass("sum")
+										.attr("id", "sum-k" + matrix + "-j" + l);
+							$td.append($input);
+							$row.append($td);
+						}
+						$table.append($row);
+						$matrixDiv.append($table);
+						$div.append($matrixDiv);
+					}
+					$('div.sudoku_solving').append($div)
+				}
+			</script>
+	</div>
+
+    <script>
+    var $el = $('.cover-container');
+    var game = new Sudoku.SGame($el);
+
+		$(function () {
+		  $('[data-toggle="tooltip"]').tooltip()
+		});
+
+		$('.show-hidden').on("click", function () {
+			if ($('.sudoku_solving').css('display') === 'none') {
+				$('.sudoku_solving').css('display', 'block');
+				$('.show-hidden').text("Hide Matrix Layers");
+			} else {
+				$('.sudoku_solving').css('display', 'none');
+				$('.show-hidden').text("Show Matrix Layers");
+			}
+		})
+
+    </script>
+</body>
+
+</html>
