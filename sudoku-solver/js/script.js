@@ -11,7 +11,7 @@
     this.$el.find("#test-sudoku").on("click", this.testSudoku.bind(this));
     this.$el.find("#reset-sudoku").on("click", this.reset.bind(this));
     this.$el.find("#fill-solver-matrix").on("click", this.fill.bind(this));
-    this.$el.find("div.number-buttons").on("click", "input", this.solveNumber.bind(this));
+    this.$el.find("div.js-numbers-buttons").on("click", "input", this.solveNumber.bind(this));
     this.$el.find("#h-button").on("click", this.horizontals.bind(this));
     this.$el.find("#v-button").on("click", this.verticals.bind(this));
     this.$el.find("#d-button").on("click", this.deepLines.bind(this));
