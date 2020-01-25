@@ -10,7 +10,6 @@
     this.loadMatrix();
     this.$el.find("#test-sudoku").on("click", this.testSudoku.bind(this));
     this.$el.find("#reset-sudoku").on("click", this.reset.bind(this));
-    this.$el.find("#fill-solver-matrix").on("click", this.fill.bind(this));
     this.$el.find("div.js-numbers-buttons").on("click", "input", this.solveNumber.bind(this));
     this.$el.find("#h-button").on("click", this.horizontals.bind(this));
     this.$el.find("#v-button").on("click", this.verticals.bind(this));
@@ -20,18 +19,9 @@
   };
 
   SGame.prototype.reset = function () {
-    for (var i = 0; i < 9; i++) {
-  		for (var j = 0; j < 9; j++) {
-        var id = i + "-" + j;
-        $('#' + id).val('');
-  		};
-  	};
-  }
-  
-  SGame.prototype.fill = function () {
-    this.fillSolverMatrix();
+    this.loadMatrix();
     this.write();
-  };
+  }
   
   SGame.prototype.horizontals = function () {
     this.fillSolverMatrix();
@@ -68,18 +58,20 @@
   };
   
   // Creates empty matrix for sudoku and 3d Solver Matrix
-  SGame.prototype.loadMatrix = function (){
+  SGame.prototype.loadMatrix = function () {
+    this.sudokuMatrix = [];
+    this.solverMatrix = [];
   	for (var i = 0; i < 9; i++) {
   		this.solverMatrix[i] = [];
   		this.sudokuMatrix[i] = [];
   		for (var j = 0; j < 9; j++) {
   			this.solverMatrix[i][j] = [];
-  			this.sudokuMatrix[i][j] = 0;
+  			this.sudokuMatrix[i][j] = '';
   			for (var k = 0; k < 9; k++) {
   				this.solverMatrix[i][j][k] = -1;
   			};
   		};
-  	};
+    };
   };
 
   SGame.prototype.testSudoku = function () {
@@ -448,8 +440,8 @@
 	 
   	 if(count == 81){
   		 this.write();
-  	 }else{
-  		 alert("No s'ha pogut resoldre...");
+  	 } else {
+  		 alert("Sorry, enable to solve...");
   		 this.write();
   	 }
   };
@@ -460,13 +452,13 @@
   SGame.prototype.write = function (){
     this.writeSolverMatrix();
   	for (var i = 0; i < 9; i++) {
-  		for (var j = 0; j < 9; j++) {
-  			for (var k = 0; k < 9; k++) {
-  				if(this.solverMatrix[i][j][k] == 1){
-  					this.sudokuMatrix[i][j] = k + 1;
+      for (var j = 0; j < 9; j++) {
+        for (var k = 0; k < 9; k++) {
+          if(this.solverMatrix[i][j][k] == 1){
+            this.sudokuMatrix[i][j] = k + 1;
   				}
   			};
-  		document.getElementById(i+"-"+j).value = this.sudokuMatrix[i][j];
+        document.getElementById(i+"-"+j).value = this.sudokuMatrix[i][j];
   		};
   	};
   };
